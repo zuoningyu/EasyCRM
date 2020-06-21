@@ -106,9 +106,9 @@ class CoreTestCase(unittest.TestCase):
         test_org = Organisation.create(name=test_org_name, type='charity')
         test_contact = Contact.create(first_name='test', last_name='contact', email='example@test.co.uk',
                                       org_id=test_org.id)
-        self.assertEquals(test_org.id, test_contact.org_id)
-        self.assertEquals(len(test_org.contacts), 1)
-        self.assertEquals(test_contact.organisation.name, test_org_name)
+        self.assertEqual(test_org.id, test_contact.org_id)
+        self.assertEqual(len(test_org.contacts), 1)
+        self.assertEqual(test_contact.organisation.name, test_org_name)
 
 
 if __name__ == '__main__':

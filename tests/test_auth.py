@@ -25,7 +25,7 @@ class AuthTestCase(unittest.TestCase):
 
     def test_login_route(self):
         rv = self.client.get(url_for('auth.login'))
-        self.assertEquals(rv.status_code, 200)
+        self.assertEqual(rv.status_code, 200)
 
     def test_add_user_with_password_hashing(self):
         user = User.create(username='test@gmail.com', password='mysecret', first_name='chris', last_name='hall')
@@ -43,11 +43,11 @@ class AuthTestCase(unittest.TestCase):
                 'password': 'mysecret'
             }
             rv = self.client.post(url_for('auth.login'), data=form_data, follow_redirects=True)
-            self.assertEquals(rv.status_code, 200)
+            self.assertEqual(rv.status_code, 200)
             self.assertTrue(user.is_authenticated())
-            self.assertEquals(current_user.id, user.id)
+            self.assertEqual(current_user.id, user.id)
             rv = self.client.get('contact/create')
-            self.assertEquals(rv.status_code, 200)
+            self.assertEqual(rv.status_code, 200)
 
     def test_incorrect_password_display_message(self):
         User.create(username='wrong@gmail.com', password='mysecret', first_name='chris', last_name='hall')
@@ -56,12 +56,12 @@ class AuthTestCase(unittest.TestCase):
             'password': 'wrongpassword'
         }
         rv = self.client.post(url_for('auth.login'), data=form_data, follow_redirects=True)
-        self.assertEquals(rv.status_code, 200)
-        self.assertTrue('Invalid password' in rv.data)
+        self.assertEqual(rv.status_code, 200)
+        self.assertTrue('Invalid password' in str(rv.data))
 
     # When we are not logged in trying access login_required pages should yield 401
     def test_login_required(self):
         rv = self.client.get('/')
-        self.assertEquals(rv.status_code, 401)
+        self.assertEqual(rv.status_code, 401)
         rv = self.client.get('/contact/create')
-        self.assertEquals(rv.status_code, 401)
+        self.assertEqual(rv.status_code, 401)
