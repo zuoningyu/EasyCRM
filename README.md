@@ -6,27 +6,25 @@ An open source Customer Relationship Management system powered by Flask and SQLA
 
 **Modified by Yu**
 
-# Installation
 
-Install all the dependencies
+# Prerequisite
 
-```
-pip3 install -r requirements.txt 
-```
+!!!!Attention!!!!This app only works with python:3.6.4
 
-Create the db table
+
+# Build and Run
 
 ```
-python manage.py create_db
+docker build -t easycrm .
 ```
 
-# Run the app
-
-Run the app
-
 ```
-python run.py
+docker run -p 8090:8090 easycrm
 ```
+
+Now you can access http://0.0.0.0:8090/login/ with Username and Password: test@gmail.com/shh 
+
+
 
 # Folder Structure
 
