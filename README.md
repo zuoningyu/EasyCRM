@@ -24,7 +24,20 @@ docker run -p 8090:8090 easycrm
 
 Now you can access http://0.0.0.0:8090/login/ with Username and Password: test@gmail.com/shh 
 
+# APIs
+auth -> controller
+```
+/login/
+```
 
+core -> controller
+```
+/
+/contact/create
+/contact/<con_id>
+/organisation/create
+/organisation/<org_id>
+```
 
 # Folder Structure
 
