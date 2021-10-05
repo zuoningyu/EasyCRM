@@ -9,20 +9,42 @@ An open source Customer Relationship Management system powered by Flask and SQLA
 
 # Prerequisite
 
-!!!!Attention!!!!This app only works with python:3.6.4
+This app only works with python:3.6.4 so please setup your local python environment to use version 3.6.4
 
+### How to verify your python version
 
-# Build and Run
+`python --version` should print out "Python 3.6.4".
 
+You can refer to [devops_initial_setup](https://github.com/JiangRenDevOps/DevOpsLectureNotesV5/blob/master/WK1-CDN-DNS/devops-initial-setup.md) on how to create a python virtual environment.
+
+# Deploy EasyCRM locally
+
+## Without Docker
+
+1. Install all the dependencies
+```
+pip3 install -r requirements.txt
+```
+2. Create the db table
+```
+python manage.py create_db
+```
+3. Run the app
+```
+python run.py
+```
+
+## With Docker
+
+1. Build Docker image `easycrm`
 ```
 docker build -t easycrm .
 ```
-
+2. Create a Docker container
 ```
 docker run -p 8090:8090 easycrm
 ```
-
-Now you can access http://0.0.0.0:8090/login/ with Username and Password: test@gmail.com/shh 
+Now you can access http://0.0.0.0:8090/login/ with Username `test@gmail` and Password `shh`
 
 # APIs
 auth -> controller
@@ -47,7 +69,7 @@ core -> controller
    |_ core ...... controller, form helper and model for core functions
    |_ database ...... admin data initialisation
    |_ templates ...... HTML templates for simple webpages
-- tests ...... Unit Test files 
+- tests ...... Unit Test files
 - config.py ...... DB config for test
 - manage.py ...... DB operation
 - run.py ...... Run the App from here
@@ -68,12 +90,12 @@ core -> controller
 
 1. Separate the database, core logic and auth into multiple microservices
 2. Generate 10000 DB entries
-3. Add an external cache to load entries faster 
+3. Add an external cache to load entries faster
 4. Introduce autoscaling via EBS
 
 ## Other
 
-1. Write a better frontend code in a different repo 
+1. Write a better frontend code in a different repo
 2. Setup deployment for the frontend to S3
 3. Point CloudFront to the S3
 4. Use Terraform to do the deployment
