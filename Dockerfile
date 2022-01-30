@@ -10,3 +10,4 @@ RUN python manage.py create_db
 
 CMD ["python", "run.py"]
 
+
